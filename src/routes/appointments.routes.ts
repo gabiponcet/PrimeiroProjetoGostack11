@@ -1,21 +1,3 @@
-/* import { Router } from 'express';
-
-const routes = Router();
-
-
-routes.post('/users', (request, response) => {
-    const { name,email } = request.body;
-
-    const user = {
-        name,
-        email,
-    };
-
-    return response.json(user);
-});
-
-export default routes; */
-
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
@@ -25,10 +7,10 @@ import CreateAppointmentService from '../services/CreateAppointmentService';
 
 const appointmentsRouter = Router();
 
-appointmentsRouter.get('/', async (request, response) => {
+appointmentsRouter.get('/', (request, response) => {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-    const appointments = await appointmentsRepository.find();
+    const appointments = appointmentsRepository.find();
 
     return response.json(appointments);
 });
@@ -53,4 +35,3 @@ appointmentsRouter.post('/', async (request, response) => {
 });
 
 export default appointmentsRouter;
-
